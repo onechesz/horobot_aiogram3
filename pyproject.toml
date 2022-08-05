@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "horobot_aiogram3"
+version = "0.1.0"
+description = ""
+authors = ["Ivan Minyaev <minyaew.to@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+SQLAlchemy = "^1.4.39"
+aiogram = {url = "https://github.com/aiogram/aiogram/archive/refs/heads/dev-3.x.zip"}
+asyncpg = "^0.26.0"
+storage = "^0.0.4"
+requests = "^2.28.1"
+beautifulsoup4 = "^4.11.1"
+APScheduler = "^3.9.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
