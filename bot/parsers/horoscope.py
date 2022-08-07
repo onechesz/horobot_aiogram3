@@ -22,7 +22,7 @@ async def gather_data(url):
 
     async with aiohttp.ClientSession() as session:
         response = await session.get(url, headers=headers)
-        soup = BeautifulSoup(await response.text(), 'html.parser')
+        soup = BeautifulSoup(await response.text(), 'lxml')
         section = soup.find(name='section', attrs={'class': 'IjM3t'})
         articles = section.find_all(name='article')
         coros = list()
@@ -34,6 +34,18 @@ async def gather_data(url):
         return await asyncio.gather(*coros)
 
 
-horoscope_daily = {tup[0]: tup[1] for tup in asyncio.run(gather_data('https://74.ru/horoscope/daily/'))}
-horoscope_tomorrow = {tup[0]: tup[1] for tup in asyncio.run(gather_data('https://74.ru/horoscope/tomorrow/'))}
-horoscope_weekly = {tup[0]: tup[1] for tup in asyncio.run(gather_data('https://74.ru/horoscope/weekly/'))}
+# horoscope_daily = {tup[0]: tup[1] for tup in asyncio.run(gather_data('https://74.ru/horoscope/daily/'))}
+# horoscope_tomorrow = {tup[0]: tup[1] for tup in asyncio.run(gather_data('https://74.ru/horoscope/tomorrow/'))}
+# horoscope_weekly = {tup[0]: tup[1] for tup in asyncio.run(gather_data('https://74.ru/horoscope/weekly/'))}
+
+
+def horoscope_parser_daily():
+    return gather_data('https://74.ru/horoscope/daily/')
+
+
+def horoscope_parser_tomorrow():
+    return gather_data('https://74.ru/horoscope/tomorrow/')
+
+
+def horoscope_parser_weekly():
+    return gather_data('https://74.ru/horoscope/weekly/')
